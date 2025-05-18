@@ -7,7 +7,7 @@
 Ideal para aplicaciones de lectura, bibliotecas virtuales o sistemas de recomendación de libros. 📱💻
 
 ## 🚀 Funcionalidades
-- **Búsqueda de libros**: Título, autor o ISBN mediante Google Books API.
+- **Búsqueda de libros**: Id o ISBN mediante Google Books API.
 - **Favoritos**: Guarda tus libros favoritos en tu cuenta.
 
 ## ⚙️ Tecnologías utilizadas

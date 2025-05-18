@@ -1,16 +1,22 @@
-import { IsString, IsArray } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-export class CreateFavoriteDto {
-  @IsString()
+@Entity()
+export class Favorito {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   googleId: string;
 
-  @IsString()
+  @Column()
   title: string;
 
-  @IsArray()
-  @IsString({ each: true })
+  @Column('text', { array: true, nullable: true })
   authors: string[];
 
-  @IsString()
+  @Column({ nullable: true })
+  thumbnail: string;
+
+  @Column('text', { nullable: true })
   description: string;
 }
