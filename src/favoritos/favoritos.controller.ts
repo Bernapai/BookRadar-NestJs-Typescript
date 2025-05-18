@@ -1,4 +1,20 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Param, Get } from '@nestjs/common';
+import { FavoritosService } from './favoritos.service';
+import { Favorito } from './dtos/createFavorito.dto';
 
 @Controller('favoritos')
-export class FavoritosController {}
+export class FavoritosController {
+  constructor(private readonly favoritosService: FavoritosService) { }
+
+  // POST /favoritos/:id
+  @Post(':id')
+  async guardarFavorito(@Param('id') id: string): Promise<Favorito> {
+    return await this.favoritosService.guardarFavorito(id);
+  }
+
+  // GET /favoritos
+  @Get()
+  async obtenerTodos(): Promise<Favorito[]> {
+    return await this.favoritosService.obtenerTodos();
+  }
+}
