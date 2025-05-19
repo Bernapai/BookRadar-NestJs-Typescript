@@ -28,6 +28,14 @@ export class UsersService {
     return user;
   }
 
+  async findUserByName(name: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { name } });
+    if (!user) {
+      throw new Error(`User with name ${name} not found`);
+    }
+    return user;
+  }
+
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepository.update(id, updateUserDto);
     return await this.findUserById(id);
