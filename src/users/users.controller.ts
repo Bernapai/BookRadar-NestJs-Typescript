@@ -6,7 +6,7 @@ import {
   Param,
   Body,
   Post,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UpdateUserDto } from './dtos/updateUser.dto';
