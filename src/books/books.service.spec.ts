@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BooksService } from './books.service';
 import axios from 'axios';
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException } from '@nestjs/common';
 import { GetBooksDto } from './books.dto';
 
 jest.mock('axios');
@@ -112,7 +112,9 @@ describe('BooksService', () => {
         response: { status: 404 },
       });
 
-      await expect(service.getOne('no-existe')).rejects.toThrow('Libro no encontrado');
+      await expect(service.getOne('no-existe')).rejects.toThrow(
+        'Libro no encontrado',
+      );
     });
   });
 });
