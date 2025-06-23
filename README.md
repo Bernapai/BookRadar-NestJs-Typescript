@@ -16,3 +16,4 @@ Ideal para aplicaciones de lectura, bibliotecas virtuales o sistemas de recomend
 - TypeScript
 - PostgreSQL (o base de datos de tu elección)
 - JWT para autenticación (opcional)
+- Jest (🧪 Testing)
