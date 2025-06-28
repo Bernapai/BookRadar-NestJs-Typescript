@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from '../auth.controller';
 import { AuthService } from '../auth.service';
-import { loginUser } from '../dtos/loginUser.dto';
+import { loginDto } from '../dtos/loginUser.dto';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -21,7 +21,7 @@ describe('AuthController', () => {
   });
 
   it('debería llamar a authService.login y devolver el token', async () => {
-    const loginDto: loginUser = { name: 'user', password: '1234' };
+    const loginDto: loginDto = { name: 'user', password: '1234' };
     const mockResponse = { access_token: 'token123' };
 
     (authService.login as jest.Mock).mockResolvedValue(mockResponse);
