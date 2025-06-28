@@ -1,10 +1,11 @@
-import { Entity, Column } from 'typeorm';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-@Entity('users') // el nombre de la tabla en la base de datos
-export class loginUser {
-  @Column()
+export class loginDto {
+  @IsNotEmpty()
+  @IsString()
   name: string;
 
-  @Column()
+  @IsNotEmpty()
+  @IsString()
   password: string;
 }

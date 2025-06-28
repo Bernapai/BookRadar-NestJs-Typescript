@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FavoritosController } from './favoritos.controller';
 import { FavoritosService } from './favoritos.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Favorito } from './dtos/createFavorito.dto';
 
 describe('FavoritosController', () => {
