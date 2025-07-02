@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BooksController } from './books.controller';
-import { BooksService } from './books.service';
-import { GetBooksDto } from './books.dto';
+import { BooksController } from 'src/books/controllers/books.controller';
+import { BooksService } from '../../src/books/services/books.service';
+import { GetBooksDto } from '../../src/books/dtos/books.dto';
 
 describe('BooksController', () => {
   let controller: BooksController;

@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FavoritosService } from './favoritos.service';
-import { Favorito } from './dtos/createFavorito.dto';
+import { FavoritosService } from '../../src/favoritos/services/favoritos.service';
+import { Favorito } from '../../src/favoritos/dtos/createFavorito.dto';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { BooksService } from '../books/books.service';
-import { GetBooksDto } from '../books/books.dto';
+import { BooksService } from '../../src/books/services/books.service';
+import { GetBooksDto } from '../../src/books/dtos/books.dto';
 
 describe('FavoritosService', () => {
   let service: FavoritosService;

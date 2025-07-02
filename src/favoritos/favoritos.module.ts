@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { FavoritosService } from './favoritos.service';
-import { FavoritosController } from './favoritos.controller';
+import { FavoritosController } from './controllers/favoritos.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Favorito } from './dtos/createFavorito.dto';
 

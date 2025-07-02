@@ -1,5 +1,5 @@
 import { Controller, Get, Query, Param, UseGuards } from '@nestjs/common';
-import { BooksService } from './books.service';
+import { BooksService } from './services/books.service';
 import { GetBooksDto } from './books.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {

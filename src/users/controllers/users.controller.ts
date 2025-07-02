@@ -8,9 +8,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CreateUserDto } from './dtos/createUser.dto';
-import { UpdateUserDto } from './dtos/updateUser.dto';
-import { User } from './users.entity';
+import { CreateUserDto } from '../dtos/createUser.dto';
+import { UpdateUserDto } from '../dtos/updateUser.dto';
+import { User } from '../entities/users.entity';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {

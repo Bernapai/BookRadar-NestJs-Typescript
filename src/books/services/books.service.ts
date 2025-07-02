@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { GetBooksDto } from './books.dto';
-import { GoogleBooksResponse, GoogleBook } from './books.interface';
+import { GetBooksDto } from '../dtos/books.dto';
+import { GoogleBooksResponse, GoogleBook } from '../interfaces/books.interface';
 @Injectable()
 export class BooksService {
   private readonly GOOGLE_BOOKS_API =

@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dtos/createUser.dto';
-import { UpdateUserDto } from './dtos/updateUser.dto';
-import { User } from './users.entity';
+import { UsersController } from '../../src/users/controllers/users.controller';
+import { UsersService } from 'src/users/services/users.service';
+import { CreateUserDto } from '../../src/users/dtos/createUser.dto';
+import { UpdateUserDto } from '../../src/users/dtos/updateUser.dto';
+import { User } from '../../src/users/entities/users.entity';
 
 describe('UsersController', () => {
   let controller: UsersController;

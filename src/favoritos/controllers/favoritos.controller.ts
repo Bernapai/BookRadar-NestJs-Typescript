@@ -1,6 +1,6 @@
 import { Controller, Post, Param, Get, UseGuards } from '@nestjs/common';
 import { FavoritosService } from './favoritos.service';
-import { Favorito } from './dtos/createFavorito.dto';
+import { Favorito } from '../dtos/createFavorito.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
   ApiTags,

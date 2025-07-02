@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BooksService } from './books.service';
+import { BooksService } from './services/books.service';
 import axios from 'axios';
 import { HttpException } from '@nestjs/common';
-import { GetBooksDto } from './books.dto';
+import { GetBooksDto } from './dtos/books.dto';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;

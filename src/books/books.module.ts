@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { BooksService } from './books.service';
+import { BooksService } from './services/books.service';
 import { BooksController } from './books.controller';
 import { HttpModule } from '@nestjs/axios';
 

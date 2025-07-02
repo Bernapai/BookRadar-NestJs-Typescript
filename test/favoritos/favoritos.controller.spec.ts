@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FavoritosController } from './favoritos.controller';
-import { FavoritosService } from './favoritos.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { Favorito } from './dtos/createFavorito.dto';
+import { FavoritosController } from '../../src/favoritos/controllers/favoritos.controller';
+import { FavoritosService } from 'src/favoritos/services/favoritos.service';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Favorito } from '../../src/favoritos/dtos/createFavorito.dto';
 
 describe('FavoritosController', () => {
   let controller: FavoritosController;
@@ -31,7 +31,7 @@ describe('FavoritosController', () => {
         },
       ],
     })
-      .overrideGuard(JwtAuthGuard) // Desactivamos el guard para las pruebas
+      .overrideGuard(AuthGuard) // Desactivamos el guard para las pruebas
       .useValue({ canActivate: () => true })
       .compile();
 
