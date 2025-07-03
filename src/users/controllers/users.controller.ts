@@ -11,8 +11,8 @@ import {
 import { CreateUserDto } from '../dtos/createUser.dto';
 import { UpdateUserDto } from '../dtos/updateUser.dto';
 import { User } from '../entities/users.entity';
-import { UsersService } from './users.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { UsersService } from '../services/users.service';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
   ApiTags,
   ApiOperation,
@@ -33,7 +33,7 @@ export class UsersController {
     return await this.usersService.createUser(createUserDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Get()
   @ApiOperation({ summary: 'Obtener todos los usuarios' })
@@ -42,7 +42,7 @@ export class UsersController {
     return await this.usersService.findAllUsers();
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un usuario por ID' })
@@ -52,7 +52,19 @@ export class UsersController {
     return await this.usersService.findUserById(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @Get('name/:name')
+  @ApiOperation({ summary: 'Obtener un usuario por nombre' })
+  @ApiResponse({ status: 200, description: 'Usuario encontrado', type: User })
+  @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
+  async findUserByName(@Param('name') name: string): Promise<User> {
+    return await this.usersService.findUserByName(name);
+  }
+
+
+
+  @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Put(':id')
   @ApiOperation({ summary: 'Actualizar un usuario por ID' })
@@ -65,7 +77,7 @@ export class UsersController {
     return await this.usersService.updateUser(id, updateUserDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Delete(':id')
   @ApiOperation({ summary: 'Eliminar un usuario por ID' })
