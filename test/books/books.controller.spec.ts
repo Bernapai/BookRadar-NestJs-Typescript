@@ -1,10 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BooksController } from 'src/books/controllers/books.controller';
+import { BooksController } from '../../src/books/controllers/books.controller';
 import { BooksService } from '../../src/books/services/books.service';
 import { GetBooksDto } from '../../src/books/dtos/books.dto';
 
 describe('BooksController', () => {
   let controller: BooksController;
+  let service: BooksService;
+
+  const mockBook: GetBooksDto = {
+    googleId: 'zyTCAlFPjgYC',
+    title: 'Clean Code',
+    authors: ['Robert C. Martin'],
+    thumbnail: 'https://example.com/image.jpg',
+    description: 'Un libro sobre buenas prácticas en programación.',
+  };
 
   const mockBooksService = {
     getAll: jest.fn(),
@@ -23,6 +32,7 @@ describe('BooksController', () => {
     }).compile();
 
     controller = module.get<BooksController>(BooksController);
+    service = module.get<BooksService>(BooksService);
   });
 
   afterEach(() => {
@@ -30,39 +40,30 @@ describe('BooksController', () => {
   });
 
   describe('getBooks', () => {
-    it('debería devolver una lista de libros', async () => {
-      const mockBooks: GetBooksDto[] = [
-        {
-          googleId: '123',
-          title: 'NestJS Básico',
-          authors: ['Autor Uno'],
-          thumbnail: 'imagen.jpg',
-          description: 'Un libro sobre NestJS',
-        },
-      ];
-      mockBooksService.getAll.mockResolvedValue(mockBooks);
+    it('debe retornar una lista de libros', async () => {
+      mockBooksService.getAll.mockResolvedValue([mockBook]);
+      const result = await controller.getBooks('Clean Code');
+      expect(result).toEqual([mockBook]);
+      expect(mockBooksService.getAll).toHaveBeenCalledWith('Clean Code');
+    });
 
-      const result = await controller.getBooks('nestjs');
-      expect(result).toEqual(mockBooks);
-      expect(mockBooksService.getAll).toHaveBeenCalledWith('nestjs');
+    it('debe manejar errores', async () => {
+      mockBooksService.getAll.mockRejectedValue(new Error('Error'));
+      await expect(controller.getBooks('Clean Code')).rejects.toThrow('Error');
     });
   });
 
   describe('getBookById', () => {
-    it('debería devolver un solo libro por ID', async () => {
-      const mockBook: GetBooksDto = {
-        googleId: 'abc',
-        title: 'Libro Individual',
-        authors: ['Autor Uno'],
-        thumbnail: 'thumb.jpg',
-        description: 'Descripción',
-      };
-
+    it('debe retornar un libro por id', async () => {
       mockBooksService.getOne.mockResolvedValue(mockBook);
-
-      const result = await controller.getBookById('abc');
+      const result = await controller.getBookById('zyTCAlFPjgYC');
       expect(result).toEqual(mockBook);
-      expect(mockBooksService.getOne).toHaveBeenCalledWith('abc');
+      expect(mockBooksService.getOne).toHaveBeenCalledWith('zyTCAlFPjgYC');
+    });
+
+    it('debe manejar errores', async () => {
+      mockBooksService.getOne.mockRejectedValue(new Error('Error'));
+      await expect(controller.getBookById('zyTCAlFPjgYC')).rejects.toThrow('Error');
     });
   });
 });

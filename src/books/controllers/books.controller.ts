@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Param, UseGuards } from '@nestjs/common';
-import { BooksService } from './services/books.service';
-import { GetBooksDto } from './books.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { BooksService } from '../services/books.service';
+import { GetBooksDto } from '../dtos/books.dto';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
   ApiTags,
   ApiOperation,
@@ -12,7 +12,7 @@ import {
 
 @ApiTags('Books')
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) { }
